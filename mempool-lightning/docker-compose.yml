@@ -73,8 +73,8 @@ services:
       DATABASE_HOST: $APP_MEMPOOL_LIGHTNING_DB_IP
       DATABASE_PORT: "3306"
       DATABASE_DATABASE: "mempool_lightning"
-      DATABASE_USERNAME: "mempool"
-      DATABASE_PASSWORD: "mempool"
+      DATABASE_USERNAME: "mempool_lightning"
+      DATABASE_PASSWORD: "mempool_lightning"
       MEMPOOL_ENABLED: "false"
       MEMPOOL_HTTP_PORT: "8993"
       MEMPOOL_CACHE_DIR: "/backend/cache"
