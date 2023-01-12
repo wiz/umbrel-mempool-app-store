@@ -95,8 +95,8 @@ services:
     restart: on-failure
     stop_grace_period: 1m
     volumes:
-      - ./docker/provision/mysql/init:/docker-entrypoint-initdb.d
       - ${APP_DATA_DIR}/mysql/data:/var/lib/mysql
+      - ${APP_DATA_DIR}/docker/provision/mysql/init:/docker-entrypoint-initdb.d
     environment:
       MYSQL_USER: "mempool"
       MYSQL_PASSWORD: "mempool"
