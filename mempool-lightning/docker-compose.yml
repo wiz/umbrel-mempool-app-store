@@ -77,7 +77,7 @@ services:
       DATABASE_USERNAME: "mempool"
       DATABASE_PASSWORD: "mempool"
       MEMPOOL_ENABLED: "false"
-      MEMPOOL_HTTP_PORT: "8999"
+      MEMPOOL_HTTP_PORT: "8993"
       MEMPOOL_CACHE_DIR: "/backend/cache"
       MEMPOOL_CLEAR_PROTECTION_MINUTES: "20"
       MEMPOOL_INDEXING_BLOCKS_AMOUNT: "52560"
@@ -89,7 +89,7 @@ services:
       LND_REST_API_URL: "https://$APP_LIGHTNING_NODE_IP:$APP_LIGHTNING_NODE_REST_PORT"
     networks:
        default:
-         ipv4_address: $APP_MEMPOOL_API_IP
+         ipv4_address: $APP_MEMPOOL_LIGHTNING_API_IP
   mariadb:
     image: mariadb:10.5.12@sha256:dfcba5641bdbfd7cbf5b07eeed707e6a3672f46823695a0d3aba2e49bbd9b1dd
     user: "1000:1000"
