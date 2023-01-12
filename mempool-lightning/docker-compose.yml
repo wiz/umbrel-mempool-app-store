@@ -60,7 +60,7 @@ services:
     stop_grace_period: 1m
     command: "./wait-for-it.sh mariadb:3306 --timeout=720 --strict -- ./start.sh"
     volumes:
-      - ${APP_DATA_DIR}/data:/backend/cache
+      - ${APP_DATA_DIR}/data-lightning:/backend/cache
       - ${APP_LIGHTNING_NODE_DATA_DIR}:/lnd:ro
     environment:
       CORE_RPC_HOST: $APP_BITCOIN_NODE_IP
@@ -110,7 +110,7 @@ services:
     restart: on-failure
     stop_grace_period: 1m
     volumes:
-      - ${APP_DATA_DIR}/mysql/data:/var/lib/mysql
+      - ${APP_DATA_DIR}/mysql-lightning/data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: "mempool_lightning"
       MYSQL_USER: "mempool_lightning"
