@@ -70,7 +70,7 @@ services:
       ELECTRUM_HOST: $APP_ELECTRS_NODE_IP
       ELECTRUM_PORT: $APP_ELECTRS_NODE_PORT
       ELECTRUM_TLS: "false"
-      DATABASE_HOST: $APP_MEMPOOL_DB_IP
+      DATABASE_HOST: $APP_MEMPOOL_LIGHTNING_DB_IP
       DATABASE_PORT: "3306"
       DATABASE_DATABASE: "mempool_lightning"
       DATABASE_USERNAME: "mempool"
@@ -89,18 +89,33 @@ services:
     networks:
        default:
          ipv4_address: $APP_MEMPOOL_LIGHTNING_API_IP
-  mariadb:
+  mariadb_mainnet:
     image: mariadb:10.5.12@sha256:dfcba5641bdbfd7cbf5b07eeed707e6a3672f46823695a0d3aba2e49bbd9b1dd
     user: "1000:1000"
     restart: on-failure
     stop_grace_period: 1m
     volumes:
       - ${APP_DATA_DIR}/mysql/data:/var/lib/mysql
-      - ${APP_DATA_DIR}/docker/provision/mysql/init:/docker-entrypoint-initdb.d
     environment:
+      MYSQL_DATABASE: "mempool"
       MYSQL_USER: "mempool"
       MYSQL_PASSWORD: "mempool"
       MYSQL_ROOT_PASSWORD: "moneyprintergobrrr"
     networks:
        default:
          ipv4_address: $APP_MEMPOOL_DB_IP
+  mariadb_lightning:
+    image: mariadb:10.5.12@sha256:dfcba5641bdbfd7cbf5b07eeed707e6a3672f46823695a0d3aba2e49bbd9b1dd
+    user: "1000:1000"
+    restart: on-failure
+    stop_grace_period: 1m
+    volumes:
+      - ${APP_DATA_DIR}/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "mempool_lightning"
+      MYSQL_USER: "mempool_lightning"
+      MYSQL_PASSWORD: "mempool_lightning"
+      MYSQL_ROOT_PASSWORD: "moneyprintergobrrr"
+    networks:
+       default:
+         ipv4_address: $APP_MEMPOOL_LIGHTNING_DB_IP
